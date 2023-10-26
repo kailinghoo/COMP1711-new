@@ -43,17 +43,30 @@ void tokeniseRecord(const char *input, const char *delimiter,
 
 // Complete the main function
 int main() {
+    FITNESS_DATA fitness[1000];
+    int buffer_size = 500;
+    char line_buffer[buffer_size];
+    int counter = 0;
+
     char filename [] = "FitnessData_2023.csv";
     FILE *file = fopen(filename, "r");
     if (file == NULL) {
         perror("");
         return 1;
     }
-    int buffer_size = 100;
-    char line_buffer[buffer_size];
+    
+    char date[11];
+	char time[6];
+	char steps[10];
+
     while (fgets(line_buffer, buffer_size, file) != NULL) {
-        tokeniseRecord(line_buffer,",")
+        tokeniseRecord(line_buffer,",",date,time,steps);
+        strcpy(fitness[counter].date,date);
+        strcpy(fitness[counter].time,time);
+        fitness[counter].steps = atoi(steps);
+        counter ++;
     }
     fclose(file);
+    printf("Number of records in file: %d", counter);
     return 0;
 }
