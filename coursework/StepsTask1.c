@@ -67,6 +67,11 @@ int main() {
         counter ++;
     }
     fclose(file);
-    printf("Number of records in file: %d", counter);
+
+    printf("Number of records in file: %d\n", counter);
+
+    for (int i=0; i<3; i++){
+        printf("%s/%s/%d\n",fitness[i].date,fitness[i].time, fitness[i].steps);
+    }
     return 0;
 }
