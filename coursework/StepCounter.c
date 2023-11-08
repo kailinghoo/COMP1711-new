@@ -82,13 +82,17 @@ int optionQ(){
 
 // Complete the main function
 int main() {
-    printf("Option A: Specify filename to import\n");
-    printf("Option B: Print Number of Records in file");
-    printf("Option C: Find the date and time of the time slot with the fewest steps\n");
-    printf("Option D: Find the data and time of the time slot with the largest number of steps\n");
-    printf("Option E: Find the mean step count of all the records in the file\n");
-    printf("Option F: Find the longest continuous period where the step count is above 500 steps\n");
-    printf("Option Q: Exit the program\n");
+    char option[1];
+    printf("Menu Options:\n");
+    printf("A: Specify the filename to be imported\n");
+    printf("B: Display the total number of records in the file\n");
+    printf("C: Find the date and time of the timeslot with the fewest steps\n");
+    printf("D: Find the date and time of the timeslot with the largest number of steps\n");
+    printf("E: Find the mean step count of all the records in the file\n");
+    printf("F: Find the longest continuous period where the step count is above 500 steps\n");
+    printf("Q: Quit\n");
+    printf("Enter choice: ");
+    scanf("%s", &option);
 
     FITNESS_DATA fitness[1000];
     int buffer_size = 500;
