@@ -42,7 +42,7 @@ char Menu() {
     printf("F: Find the longest continuous period where the step count is above 500 steps\n");
     printf("Q: Quit\n");
     printf("Enter choice: ");
-    scanf("%c", &option);
+    scanf("%c",&option);
     return option;
 }
 
@@ -91,13 +91,9 @@ int optionE(FITNESS_DATA fitness[1000], int counter) {
     return 0;
 }
 
-int optionQ(){
-    exit(0);
-}
-
 // Complete the main function
 int main() {
-    char option = Menu();
+    char option;
 
     FITNESS_DATA fitness[1000];
     int buffer_size = 500;
@@ -124,21 +120,26 @@ int main() {
     }
     fclose(file);
 
-    if (option == 'B'){
-        optionB(counter); 
+    option=Menu();
+
+    while (option != 'Q'){
+        if (option == 'B'){
+            optionB(counter);
+        }
+        else if (option == 'C') {
+            optionC(fitness, counter);
+        }
+        else if (option == 'D'){
+            optionD(fitness, counter);
+        }
+        else if (option =='E'){
+            optionE(fitness, counter);
+        }
+        else{
+            printf("Invalid choice. Try again.\n");
+        }
+        Menu();
+        scanf("%c", &option);
     }
-    else if (option == 'C') {
-        optionC(fitness, counter);
-    }
-    else if (option == 'D'){
-        optionD(fitness, counter);
-    }
-    else if (option =='E'){
-        optionE(fitness, counter);
-    }
-    else if (option == 'Q'){
-        optionQ();
-    }
-    option = Menu();
-    printf("%c",option);
+    return 0;
 }
