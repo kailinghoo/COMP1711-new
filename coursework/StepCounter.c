@@ -31,6 +31,20 @@ void tokeniseRecord(const char *input, const char *delimiter,
 
 }
 
+char Menu(char option) {
+    printf("Menu Options:\n");
+    printf("A: Specify the filename to be imported\n");
+    printf("B: Display the total number of records in the file\n");
+    printf("C: Find the date and time of the timeslot with the fewest steps\n");
+    printf("D: Find the date and time of the timeslot with the largest number of steps\n");
+    printf("E: Find the mean step count of all the records in the file\n");
+    printf("F: Find the longest continuous period where the step count is above 500 steps\n");
+    printf("Q: Quit\n");
+    printf("Enter choice: ");
+    scanf("%s", &option);
+    return option;
+}
+
 int optionB(int counter) {
     printf("Total records: %d\n", counter);
     return 0;
@@ -82,17 +96,8 @@ int optionQ(){
 
 // Complete the main function
 int main() {
-    char option[1];
-    printf("Menu Options:\n");
-    printf("A: Specify the filename to be imported\n");
-    printf("B: Display the total number of records in the file\n");
-    printf("C: Find the date and time of the timeslot with the fewest steps\n");
-    printf("D: Find the date and time of the timeslot with the largest number of steps\n");
-    printf("E: Find the mean step count of all the records in the file\n");
-    printf("F: Find the longest continuous period where the step count is above 500 steps\n");
-    printf("Q: Quit\n");
-    printf("Enter choice: ");
-    scanf("%s", &option);
+    char option;
+    option = Menu(option);
 
     FITNESS_DATA fitness[1000];
     int buffer_size = 500;
@@ -118,7 +123,11 @@ int main() {
         counter ++;
     }
     fclose(file);
-    optionB(counter);
+
+    if (option == "B"){
+       optionB(counter); 
+    }
+    
     optionC(fitness, counter);
     optionD(fitness, counter);
     optionE(fitness, counter);
