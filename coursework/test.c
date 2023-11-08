@@ -103,20 +103,20 @@ int optionF(FITNESS_DATA fitness[1000], int counter) {
         if (fitness[i].steps > 500){
             strcpy(date, fitness[i].date);
             strcpy(tempStart, fitness[i].time);
-            printf("%s",tempStart);
-            counter2++;
-            for (int j=i+1; j<counter;j++){
+            printf("%s\n",tempStart);
+            for (int j=i; j<counter;j++){
                 if (fitness[j].steps > 500){
                     counter2++;
                     strcpy(tempEnd,fitness[j].time);
+                    printf("%d",counter2);
                 }
                 else{
                     if (counter2 > highest){
                         strcpy(timeEnd, tempEnd);
                         strcpy(timeStart, tempStart);
                         highest = counter2;
-                        counter2 = 0;
                     }
+                    counter2 = 0;
                     break;
                 }
             }
@@ -160,6 +160,7 @@ int main() {
                 counter ++;
             }
             fclose(file);
+            printf("File sucessfully loaded.\n");
             Menu();
             scanf("%c",&option);
         }
