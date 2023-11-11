@@ -44,16 +44,18 @@ void tokeniseRecord(const char *input, const char *delimiter,
 // Complete the main function
 int main() {
     FITNESS_DATA fitness[1000];
+    int steps_array[500];
     int buffer_size = 500;
     char line_buffer[buffer_size];
     int counter = 0;
+    int a, i, j;
 
     char filename [1000];
     printf("Input filename: ");
     scanf("%s", filename);
     FILE *file = fopen(filename, "r");
     if (file == NULL) {
-        printf("Error: invalid file");
+        printf("Error: invalid file\n");
         return 1;
     }
     
@@ -67,6 +69,7 @@ int main() {
             strcpy(fitness[counter].date,date);
             strcpy(fitness[counter].time,time);
             fitness[counter].steps = atoi(steps);
+            steps_array[counter] = atoi(steps);
             memset(date,0,strlen(date));
             memset(time,0,strlen(time));
             memset(steps,0,strlen(steps));
@@ -78,5 +81,27 @@ int main() {
         }
     }
     fclose(file);
+
+    strcat(filename, ".tsv");
+    FILE *file2 = fopen (filename, "w");
+
+    for (i=0; i<counter; i++){
+        for (j=0; j<counter; j++){
+            if (steps_array[i] < steps_array[j]) {
+                a = steps_array[i];
+                steps_array[i] = steps_array[j];
+                steps_array[j] = a;
+            }
+        }
+    }
+    for (i=0;i<counter;i++){
+        for (j=0;j<counter;j++){
+            if (steps_array[i]==fitness[j].steps){
+                fprintf(file2,"%s\t%s\t%d\n", fitness[j].date, fitness[j].time,fitness[j].steps);
+                break;
+            }
+        }
+    }
+    fclose(file2);
     return 0;
 }
