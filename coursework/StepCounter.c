@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "FitnessDataStruct.h"
+#include <ctype.h>
 
 // This is your helper function. Do not change it in any way.
 // Inputs: character array representing a row; the delimiter character
@@ -139,6 +140,7 @@ int main() {
     int counter = 0;
 
     while (option != 'Q'){
+        option = toupper(option);
         if (option == 'A'){
             printf("Input filename: ");
             scanf("%s", filename);
@@ -163,6 +165,7 @@ int main() {
             printf("File sucessfully loaded.\n");
             Menu();
             scanf("%c",&option);
+            option = toupper(option);
         }
         if (option == 'B'){
             optionB(counter);
