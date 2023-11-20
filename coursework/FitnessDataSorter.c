@@ -3,17 +3,6 @@
 #include <string.h>
 #include "FitnessDataStruct.h"
 
-// Define an appropriate struct
-typedef struct {
-	char date[11];
-	char time[6];
-	int steps;
-} FITNESS_DATA;
-
-// Define any additional variables here
-
-
-
 // This is your helper function. Do not change it in any way.
 // Inputs: character array representing a row; the delimiter character
 // Ouputs: date character array; time character array; steps character array
@@ -67,6 +56,7 @@ int main() {
     while (fgets(line_buffer, buffer_size, file) != NULL) {
         tokeniseRecord(line_buffer,",",date,time,steps);
         if (date[0] != '\0' && time[0] != '\0' && steps[0]!= '\0'){
+            puts(steps);
             strcpy(fitness[counter].date,date);
             strcpy(fitness[counter].time,time);
             fitness[counter].steps = atoi(steps);
@@ -88,7 +78,7 @@ int main() {
 
     for (i=0; i<counter; i++){
         for (j=0; j<counter; j++){
-            if (steps_array[i] < steps_array[j]) {
+            if (steps_array[i] > steps_array[j]) {
                 a = steps_array[i];
                 steps_array[i] = steps_array[j];
                 steps_array[j] = a;
