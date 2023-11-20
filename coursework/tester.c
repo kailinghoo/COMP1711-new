@@ -2,10 +2,15 @@
 #include <math.h>
 
 int main(){
-    float num1 = 50.123;
-    float num2 = 30.9;
-    int result1 = ceil(num1);
-    int result2 = ceil(num2);
-    printf("%d %d",result1, result2);
+    float mean = 101.9615;
+    float remainder = mean - (int)mean;
+    int result;
+    if (remainder < 0.5){
+        result = (int)mean;
+    }
+    else{
+        result = (int)mean + 1;
+    }
+    printf("Mean step count: %d\n", result);
     return 0;
 }

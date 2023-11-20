@@ -89,7 +89,7 @@ int optionE(FITNESS_DATA fitness[1000], int counter) {
     float mean = total / counter;
     float remainder = mean - (int)mean;
     int result;
-    if (remainder >= 0.5){
+    if (remainder < 0.5){
         result = total / counter;
     }
     else{
