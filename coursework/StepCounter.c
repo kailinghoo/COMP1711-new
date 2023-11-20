@@ -67,7 +67,7 @@ int optionC(FITNESS_DATA fitness[1000], int counter) {
 }
 
 int optionD(FITNESS_DATA fitness[1000], int counter) {
-    int highest = 0;
+    int highest = -10000000;
     char date[11];
 	char time[6];
     for (int i=0; i<counter; i++){
@@ -86,8 +86,16 @@ int optionE(FITNESS_DATA fitness[1000], int counter) {
     for (int i=0; i<counter; i++){
         total += fitness[i].steps;
     }
-    int mean = total / counter;
-    printf("Mean step count: %d\n", mean);
+    float mean = total / counter;
+    float remainder = mean - (int)mean;
+    int result;
+    if (remainder >= 0.5){
+        result = total / counter;
+    }
+    else{
+        result = (total / counter) + 1;
+    }
+    printf("Mean step count: %d\n", result);
     return 0;
 }
 
