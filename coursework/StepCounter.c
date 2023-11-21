@@ -111,12 +111,10 @@ int optionF(FITNESS_DATA fitness[1000], int counter) {
         if (fitness[i].steps > 500){
             strcpy(date, fitness[i].date);
             strcpy(tempStart, fitness[i].time);
-            printf("%s\n",tempStart);
             for (int j=i; j<counter;j++){
                 if (fitness[j].steps > 500){
                     counter2++;
                     strcpy(tempEnd,fitness[j].time);
-                    printf("%d",counter2);
                 }
                 else{
                     if (counter2 > highest){
