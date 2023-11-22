@@ -52,6 +52,21 @@ int optionB(int counter) {
     return 0;
 }
 
+int optionC(FITNESS_DATA fitness[1000], int counter) {
+    int lowest = 1000000;
+    char date[11];
+	char time[6];
+    for (int i=0; i<counter; i++){
+        if (fitness[i].steps < lowest){
+            lowest = fitness[i].steps;
+            strcpy(date, fitness[i].date);
+            strcpy(time, fitness[i].time);
+        }
+    }
+    printf("Fewest steps: %s %s\n", date, time);
+    return 0;
+}
+
 int optionD(FITNESS_DATA fitness[1000], int counter) {
     int highest = 0;
     char date[11];
@@ -159,7 +174,7 @@ int main() {
             optionB(counter);
         }
         else if (option == 'C') {
-            optionD(fitness, counter);
+            optionC(fitness, counter);
         }
         else if (option == 'D'){
             optionD(fitness, counter);
