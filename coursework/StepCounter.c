@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 #include "FitnessDataStruct.h"
 
 // This is your helper function. Do not change it in any way.
@@ -81,20 +82,13 @@ int optionD(FITNESS_DATA fitness[1000], int counter) {
     return 0;
 }
 
-int optionE(FITNESS_DATA fitness[1000], int counter) {
-    int total = 0;
+int optionE(FITNESS_DATA fitness[1000], float counter) {
+    float total = 0;
     for (int i=0; i<counter; i++){
         total += fitness[i].steps;
     }
     float mean = total / counter;
-    float remainder = mean - (int)mean;
-    int result;
-    if (remainder < 0.5){
-        result = total / counter;
-    }
-    else{
-        result = (total / counter) + 1;
-    }
+    int result = mean + 0.5;
     printf("Mean step count: %d\n", result);
     return 0;
 }
