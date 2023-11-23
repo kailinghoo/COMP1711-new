@@ -78,7 +78,7 @@ int optionD(FITNESS_DATA fitness[1000], int counter) {
             strcpy(time, fitness[i].time);
         }
     }
-    printf("Highest steps: %s %s\n", date, time);
+    printf("Largest steps: %s %s\n", date, time);
     return 0;
 }
 
