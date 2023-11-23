@@ -56,7 +56,6 @@ int main() {
     while (fgets(line_buffer, buffer_size, file) != NULL) {
         tokeniseRecord(line_buffer,",",date,time,steps);
         if (date[0] != '\0' && time[0] != '\0' && steps[0]!= '\0'){
-            puts(steps);
             strcpy(fitness[counter].date,date);
             strcpy(fitness[counter].time,time);
             fitness[counter].steps = atoi(steps);
@@ -64,6 +63,10 @@ int main() {
             memset(date,0,strlen(date));
             memset(time,0,strlen(time));
             memset(steps,0,strlen(steps));
+            if (fitness[counter].steps == 0){
+                printf("Error: invalid file\n");
+                return 1;
+            }
             counter ++;
         }
         else{
